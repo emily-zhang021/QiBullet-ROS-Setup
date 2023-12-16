@@ -4,7 +4,7 @@ This tutorial assumes that you have already gone through the steps of setting up
 
 Original QiBullet Repository: https://github.com/softbankrobotics-research/qibullet
 
-If you have not set up your environment yet, please follow this tutorial: https://github.com/rosielab/pepper-ros-joints-package
+If you have not set up your environment yet, please follow this tutorial: https://github.com/rosielab/ROStoNAO-Bridge-Docker-Setup
 
 ## Create QiBullet Project
 
