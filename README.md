@@ -1,115 +1,12 @@
 # QiBullet-ROS-Setup
 
-## 1. Install Ubuntu VirtualBox
+This tutorial assumes that you have already gone through the steps of setting up a catkin workspace that is ready to use for ROS.
 
-Download VirtualBox https://www.virtualbox.org/
-Download image https://releases.ubuntu.com/focal/
+If you have not set up your environment yet, please follow this tutorial: https://github.com/rosielab/pepper-ros-joints-package
 
-Create a new VM for Ubuntu 20.04
+## Create QiBullet Project
 
-Note: This will not work for Ubuntu 22.04.
-## 2. Setup Ubuntu Environment 
-Adapted from https://wiki.ros.org/noetic/Installation/Ubuntu
-### 2.1 Setup your sources.list
-Setup your computer to accept software from packages.ros.org.
-```
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-```
-### 1.3 Set up your keys
-```
-sudo apt install curl
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-```
-
-### 1.4 Installation
-First, make sure your Debian package index is up-to-date:
-```
-sudo apt update
-```
-
-Desktop-Full Install ros-noetic. This is to also install the packages that are needed to run the simulated Pepper. This may take a while. 
-```
-sudo apt install ros-noetic-desktop-full
-```
-
-### 1.5 Environment setup
-You must source this script in every **bash** terminal you use ROS in.
-source /opt/ros/noetic/setup.bash
-In Bash, this automatically sources the script every time a new shell is launched. 
-```
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-```
-
-### 1.6 Dependencies for building packages
-Up to now you have installed what you need to run the core ROS packages. To create and manage your own ROS workspaces, there are various tools and requirements that are distributed separately. For example, [rosinstall](https://wiki.ros.org/rosinstall) is a frequently used command-line tool that enables you to easily download many source trees for ROS packages with one command.
-
-To install this tool and other dependencies for building ROS packages, run:
-```
-sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-```
-
-#### 1.6.1 Initialize rosdep
-```
-sudo apt install python3-rosdep
-sudo rosdep init
-rosdep update
-```
-
-## 2 Set up ROS Workspace for NaoQi Driver
-
-### 2.1 Create Catkin Workspace
-```
-mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws/
-```
-### 2.2 Set up Environment
-Source your new setup.* sh file and make sure ROS_PACKAGE_PATH environment variable includes the directory you're in to make sure your workspace is properly overlayed by the setup script
-```
-source devel/setup.bash
-echo $ROS_PACKAGE_PATH /home/youruser/catkin_ws/src:/opt/ros/noetic/share
-```
-### 2.3 Set Up NaoQi Driver 
-Install NaoQi Driver Dependencies
-```
-sudo apt-get update
-sudo apt-get install -y git-all
-sudo apt-get install ros-noetic-naoqi-libqi
-sudo apt-get install ros-noetic-naoqi-libqicore
-sudo apt-get install ros-noetic-naoqi-bridge-msgs
-sudo apt install net-tools
-```
-
-Clone Naoqi Driver into directory
-```
-git clone https://github.com/ros-naoqi/naoqi_driver.git ~/catkin_ws/src/naoqi_driver
-```
-
-Source ROS script 
-```
-source /opt/ros/noetic/setup.bash
-```
-
-Install Naoqi Driver
-```
-rosdep install -i -y --from-paths ~/catkin_ws/src/naoqi_driver
-. /opt/ros/noetic/setup.sh
-```
-
-You may have to install and update rosdep before this step, if you get errors.
-
-```
-sudo apt install python3-rosdep2
-rosdep update
-```
-
-Make the project 
-```
-catkin_make
-```
-## 3 Create QiBullet Project
-
-### 3.1 Install Dependencies
+### Install Dependencies
 The following modules are required:
 numpy, pybullet, pip
 ```
@@ -119,17 +16,17 @@ pip install numpy
 pip install pybullet
 ```
 
-### 3.2 Install qiBullet module
+### Install qiBullet module
 ```
 pip install --user qibullet
 ```
 
-### 3.3 Create QiBullet Project
+### Create QiBullet Project
 ```
 catkin_create_pkg qibullet std_msgs rospy 
 ```
 
-### 3.4 Navigate to QiBullet Project Folder and Create qi.py 
+### Navigate to QiBullet Project Folder and Create qi.py 
 ```
 roscd qibullet
 ```
