@@ -2,6 +2,8 @@
 
 This tutorial assumes that you have already gone through the steps of setting up a catkin workspace that is ready to use for ROS.
 
+Original QiBullet Repository: https://github.com/softbankrobotics-research/qibullet
+
 If you have not set up your environment yet, please follow this tutorial: https://github.com/rosielab/pepper-ros-joints-package
 
 ## Create QiBullet Project
